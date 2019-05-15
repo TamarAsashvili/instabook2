@@ -7,8 +7,27 @@ const express =require('express');
 const app = express();
 
 
-//route for "/" path
-app.get('/', (req, res, next)=> res.send('Hello from the back-end side'));
+//get all users
+app.get('/users', (req, res, next)=> {
+  console.log('get users');
+  res.json({});
+});
+
+
+//create one user route
+app.post('/users', (req, res, next)=> {
+  console.log('create  onr users');
+  res.json({});
+});
+
+//get one user route
+app.get('/users/:id', (req, res, next)=> {
+  console.log('get one user');
+  console.log(req.params.id);
+  res.json({});
+});
+
+
 //creating a port variable, 
 const port = 2337; 
 
