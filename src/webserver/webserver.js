@@ -2,11 +2,12 @@
 
 //importing express.js
 const express =require('express');
-const userTable = rerequire('../database/tables/user-table');
+const bodyParser = require('body-parser');
+const userTable = require('../database/tables/user-table');
 
 //created a webserver
 const app = express();
-
+app.use(bodyParser.json());
 
 //get all users
 app.get('/users', (req, res, next)=> {
@@ -17,18 +18,16 @@ app.get('/users', (req, res, next)=> {
 
 //create one user route
 app.post('/users', async (req, res, next)=> {
-  console.log('create  onr users');
-  res.json({});
+   console.log('Create one user');
+   const data = req.body;
+   const user = (await userTable.createRow(data))[0];
+  res.json(user);
 });
 
 //get one user route
-app.get('/users/:id', (req, res, next)=> {
-   console.log('Create ine user');
-   const user = await createRow({
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@doe.com'
-  });
+app.get('/users/:id', async (req, res, next)=> {
+  console.log('get  one user');
+  consolelog(req.params.id);
   res.json({});
 });
 

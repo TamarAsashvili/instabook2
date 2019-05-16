@@ -15,7 +15,7 @@ const createTable = ( ) => database.query(`
       );
 `) ;
 
-const createRow = data =>database.query(SQL`
+const createRow = data => database.query(SQL`
    INSERT INTO
      users
      (
