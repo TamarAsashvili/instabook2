@@ -1,5 +1,6 @@
 'use strict';
 
+const SQL = require('pg-template-tag').default;
 const database = require('../database');
 
 const createTable = ( ) => database.query(`
@@ -14,7 +15,27 @@ const createTable = ( ) => database.query(`
       );
 `) ;
 
-(async () => await createTable())();
+const createRow = data =>database.query(SQL`
+   INSERT INTO
+     users
+     (
+       first_name, 
+       last_name, 
+       email
+     )
+     VALUES
+     (
+       ${data.firstName},
+       ${data.lastName},
+       ${data.email}
+     );
+     RETURNING
+      *;
+`);
+
+module.exports={
+  createRow
+};
 
 
 

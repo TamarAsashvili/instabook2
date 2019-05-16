@@ -2,6 +2,7 @@
 
 //importing express.js
 const express =require('express');
+const userTable = rerequire('../database/tables/user-table');
 
 //created a webserver
 const app = express();
@@ -15,15 +16,19 @@ app.get('/users', (req, res, next)=> {
 
 
 //create one user route
-app.post('/users', (req, res, next)=> {
+app.post('/users', async (req, res, next)=> {
   console.log('create  onr users');
   res.json({});
 });
 
 //get one user route
 app.get('/users/:id', (req, res, next)=> {
-  console.log('get one user');
-  console.log(req.params.id);
+   console.log('Create ine user');
+   const user = await createRow({
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@doe.com'
+  });
   res.json({});
 });
 

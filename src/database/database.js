@@ -11,11 +11,11 @@ const query = async sql => (await pool.query(sql)).rows;
 
 
 // (async () => {
-//     const result = await query(`
-//       SELECT
-//          1 + 42 + 55;
-//          AS resuls;
-//     `);
+//   const result = await query(`
+//     SELECT
+//         1 + 42 + 55;
+//          AS result;
+//    `);
 //     console.log('CALCULATION=', result);
 // })();
 
